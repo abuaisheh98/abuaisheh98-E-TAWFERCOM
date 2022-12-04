@@ -10,7 +10,7 @@ class User < ApplicationRecord
 
   validates_associated :stores
   validates_associated :orders
-  validates :name, format: {without: [0-9], message: "Numbers are not allowed"}
+  validates :name, format: {without: /[0-9]/, message: "Numbers are not allowed"}
   validates :name, length: {minimum: 3}
   validates :name, :email, presence: true
   enum role: [:customer, :owner, :Admin]

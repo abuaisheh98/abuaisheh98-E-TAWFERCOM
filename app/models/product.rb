@@ -1,6 +1,7 @@
 class Product < ApplicationRecord
   belongs_to :store
   has_and_belongs_to_many :categories
+  has_and_belongs_to_many :orders
 
   validates :production_dste, comparison: {greater_than: :expiry_date}
   validate :expiration_date_cannot_be_in_th_past
