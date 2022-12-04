@@ -1,6 +1,8 @@
 <h1>E-TAWFERCOM</h1>
 <% if current_user %>
 <p>Welcome <%= current_user.name %></p>
+  <br/>
+  <p>you are a [<%= current_user.role %>]</p>
   <%= link_to "Sign Out", destroy_user_session_path,  data: { "turbo-method": :delete } %>
 <% else %>
   <p>you are not signed in</p>
