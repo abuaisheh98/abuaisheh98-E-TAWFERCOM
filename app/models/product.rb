@@ -3,7 +3,7 @@ class Product < ApplicationRecord
   has_and_belongs_to_many :categories
   has_and_belongs_to_many :orders
 
-  validates :production_dste, comparison: {greater_than: :expiry_date}
+  #validates :production_dste, comparison: {greater_than: :expiry_date}
   validate :expiration_date_cannot_be_in_th_past
            # :price_cannot_be_less_than_or_equal_zero,
            # :stock_quantity_cannot_be_less_than_zero
