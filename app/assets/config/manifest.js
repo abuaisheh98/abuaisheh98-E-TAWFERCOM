@@ -7,7 +7,7 @@
 //= link controllers/hello_controller.js
 //= link controllers/index.js
 //= link application.js
-//= require ../javascripts/main
+
 //= require easing/easing.min
 //= require owl.carousel.js
 //= require owl.carousel.min
