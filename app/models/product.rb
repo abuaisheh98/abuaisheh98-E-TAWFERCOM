@@ -15,17 +15,4 @@ class Product < ApplicationRecord
       errors.add(:expiry_date, "Can't be in the past")
     end
   end
-
-  # def price_cannot_be_less_than_or_equal_zero
-  #   if price.present? and price <= 0
-  #     errors.add(:price, "Can't be less than or equal zero")
-  #   end
-  # end
-
-  # def stock_quantity_cannot_be_less_than_zero
-  #   if stock_quantity.present? and stock_quantity < 0
-  #     errors.add(:stock_quantity, "Can't be less than zero")
-  #   end
-  # end
-
 end

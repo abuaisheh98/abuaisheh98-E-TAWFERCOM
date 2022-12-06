@@ -145,10 +145,10 @@
   <div class="row px-xl-5">
     <div class="col">
       <div class="owl-carousel related-carousel">
-        <% @products.each do |product| %>
+        <% @x.each do |product| %>
         <div class="product-item bg-light">
           <div class="product-img position-relative overflow-hidden">
-            <%= image_tag(product.image, class: "img-fluid w-100", style: "min-height : 326px") %>
+            <%= image_tag(product.image, class: "img-fluid w-100", style: "height: 326px") %>
             <div class="product-action">
               <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
             </div>
