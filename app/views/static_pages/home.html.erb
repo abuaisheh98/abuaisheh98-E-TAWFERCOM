@@ -103,7 +103,9 @@
           <div class="product-img position-relative overflow-hidden">
             <%= image_tag(featured_product.image, class: "img-fluid w-100", style: "min-height : 326px") %>
             <div class="product-action">
-              <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+              <%= link_to  controller: :static_pages, action: :add_to_cart, :product => featured_product.id,:class => "btn btn-outline-dark btn-square" do %>
+                <i class="fa fa-shopping-cart"></i>
+                <% end %>
             </div>
           </div>
           <div class="text-center py-4">

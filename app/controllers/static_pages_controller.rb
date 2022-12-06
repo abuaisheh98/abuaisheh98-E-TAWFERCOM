@@ -6,6 +6,11 @@ class StaticPagesController < ApplicationController
     @x = Product.all
   end
 
+  def add_to_cart
+    (session["products"] ||= []) << params[:product]
+    redirect_to controller: :static_pages,action: :home
+  end
+
 
 
 end
