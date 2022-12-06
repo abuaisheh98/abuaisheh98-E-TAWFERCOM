@@ -5,8 +5,6 @@ class Product < ApplicationRecord
 
   #validates :production_dste, comparison: {greater_than: :expiry_date}
   validate :expiration_date_cannot_be_in_th_past
-           # :price_cannot_be_less_than_or_equal_zero,
-           # :stock_quantity_cannot_be_less_than_zero
   validates :price, numericality: {greater_than: 0, message: "Can't be less than or equal zero"}
   validates :stock_quantity, numericality: {greater_than_or_equal_to: 0, message: "Can't be less than zero"}
 
