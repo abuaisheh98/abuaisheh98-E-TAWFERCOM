@@ -1,36 +1,43 @@
 <section class="main">
   <div class="main-top">
     <h1>Admins</h1>
-    <i class="fas fa-user-cog"></i>
+    <%= link_to new_user_registration_path,style: "margin_left:550px", :role => "admin" do %>
+      <i class="fas fa-user-plus"></i>
+    <% end %>
   </div>
   <div class="users">
-    <% @admins.each do |admin| %>
-      <div class="card">
-      <%= image_tag('profile.png') %>
-      <h4><%= admin.name %></h4>
-      <p><%= admin.role %></p>
-      <div class="per">
-        <table>
-          <tr>
-            <td><span>85%</span></td>
-            <td><span>87%</span></td>
-          </tr>
-          <tr>
-            <td>Month</td>
-            <td>Year</td>
-          </tr>
-        </table>
+    <% unless @admins.nil? || @admins.count <= 1 %>
+      <% @admins.each do |admin| %>
+        <div class="card">
+        <%= image_tag('profile.png') %>
+        <h4><%= admin.name %></h4>
+        <p><%= admin.role %></p>
+        <div class="per">
+          <table>
+            <tr>
+              <td><span>85%</span></td>
+              <td><span>87%</span></td>
+            </tr>
+            <tr>
+              <td>Month</td>
+              <td>Year</td>
+            </tr>
+          </table>
+        </div>
+        <button>Profile</button>
       </div>
-      <button>Profile</button>
-    </div>
+      <% end %>
     <% end %>
   </div>
 
   <div class="main-top">
     <h1>Owners</h1>
-    <i class="fas fa-user-cog"></i>
+    <%= link_to new_user_registration_path, :role => "owner" do %>
+      <i class="fas fa-user-plus"></i>
+    <% end %>
   </div>
   <div class="users">
+    <% unless @owners.nil? || @owners.count <= 1 %>
     <% @owners.each do |owner| %>
     <div class="card">
       <%= image_tag('profile.png') %>
@@ -51,13 +58,17 @@
       <button>Profile</button>
     </div>
       <% end %>
+    <% end %>
   </div>
 
   <div class="main-top">
     <h1>Costumers</h1>
-    <i class="fas fa-user-cog"></i>
+    <%= link_to new_user_registration_path, :role => "costumer" do %>
+      <i class="fas fa-user-plus"></i>
+    <% end %>
   </div>
   <div class="users">
+    <% unless @costumers.nil? || @costumers.count <= 1 %>
     <% @costumers.each do |costumer| %>
       <div class="card">
       <%= image_tag('profile.png') %>
@@ -77,6 +88,7 @@
       </div>
       <button>Profile</button>
     </div>
+    <% end %>
     <% end %>
   </div>
 </section>
