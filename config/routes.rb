@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get 'admins/index'
   get 'carts/index'
   get 'static_pages/add_to_cart'
   resources :categories

@@ -14,9 +14,9 @@ class User < ApplicationRecord
   validates :name, length: {minimum: 3}
   validates :name, :email, presence: true
   enum role: [:customer, :owner, :Admin]
-  # after_initialize :set_default_role, :if => :new_record?
-  #
-  # def set_default_role
-  #   self.role ||= :customer
-  # end
+  after_initialize :set_default_role, :if => :new_record?
+
+  def set_default_role
+    self.role ||= :customer
+  end
 end

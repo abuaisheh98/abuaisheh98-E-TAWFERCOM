@@ -1,0 +1,82 @@
+<section class="main">
+  <div class="main-top">
+    <h1>Admins</h1>
+    <i class="fas fa-user-cog"></i>
+  </div>
+  <div class="users">
+    <% @admins.each do |admin| %>
+      <div class="card">
+      <%= image_tag('profile.png') %>
+      <h4><%= admin.name %></h4>
+      <p><%= admin.role %></p>
+      <div class="per">
+        <table>
+          <tr>
+            <td><span>85%</span></td>
+            <td><span>87%</span></td>
+          </tr>
+          <tr>
+            <td>Month</td>
+            <td>Year</td>
+          </tr>
+        </table>
+      </div>
+      <button>Profile</button>
+    </div>
+    <% end %>
+  </div>
+
+  <div class="main-top">
+    <h1>Owners</h1>
+    <i class="fas fa-user-cog"></i>
+  </div>
+  <div class="users">
+    <% @owners.each do |owner| %>
+    <div class="card">
+      <%= image_tag('profile.png') %>
+      <h4><%= owner.name %></h4>
+      <p><%= owner.role %></p>
+      <div class="per">
+        <table>
+          <tr>
+            <td><span>85%</span></td>
+            <td><span>87%</span></td>
+          </tr>
+          <tr>
+            <td>Month</td>
+            <td>Year</td>
+          </tr>
+        </table>
+      </div>
+      <button>Profile</button>
+    </div>
+      <% end %>
+  </div>
+
+  <div class="main-top">
+    <h1>Costumers</h1>
+    <i class="fas fa-user-cog"></i>
+  </div>
+  <div class="users">
+    <% @costumers.each do |costumer| %>
+      <div class="card">
+      <%= image_tag('profile.png') %>
+      <h4><%= costumer.name %></h4>
+      <p><%= costumer.role %></p>
+      <div class="per">
+        <table>
+          <tr>
+            <td><span>85%</span></td>
+            <td><span>87%</span></td>
+          </tr>
+          <tr>
+            <td>Month</td>
+            <td>Year</td>
+          </tr>
+        </table>
+      </div>
+      <button>Profile</button>
+    </div>
+    <% end %>
+  </div>
+</section>

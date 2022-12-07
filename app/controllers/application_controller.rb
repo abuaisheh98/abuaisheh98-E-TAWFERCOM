@@ -2,11 +2,17 @@ class ApplicationController < ActionController::Base
   before_action :configure_permitted_parameters, if: :devise_controller?
   before_action :get_categories_data
   layout :layout_by_resource
+  # protect_from_forgery with: :ex
   # before_action :update_session_time, except:  [:home]
   # before_action :session_expires, except:  [:index]
 
-
-
+  def after_sign_in_path_for(resource)
+    if current_user.role == 'owner'
+      carts_index_path
+    else
+      root_path
+    end
+  end
   def session_expires
     @time_left = session[:expires_at]
     puts @time_left.to_i
@@ -26,7 +32,6 @@ class ApplicationController < ActionController::Base
   protected
   def configure_permitted_parameters
     devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
-    puts '==================================',params[:role],params[:name],'=========================='
   end
 
   private
