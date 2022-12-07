@@ -42,6 +42,12 @@
               <p class="help-block text-danger"></p>
             </div>
 
+            <div class="control-group">
+              <%= f.hidden_field :role, value: params[:role], class: "form-control"%>
+              <p class="help-block text-danger"></p>
+            </div>
+
+
             <div class="actions">
               <%= f.submit "Sign up", class: "btn btn-primary py-2 px-4" %>
             </div>

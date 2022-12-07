@@ -44,23 +44,23 @@
               <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
               <div class="dropdown-menu dropdown-menu-right">
                 <%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %>
-                <%= link_to "Sign Up as owner",new_user_registration_path ,class: "dropdown-item" %>
+                <%= link_to "Sign Up as owner",new_user_registration_path(:role => 'owner') ,class: "dropdown-item" %>
               </div>
             </div>
             <div class="btn-group mx-2">
               <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">USD</button>
               <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button">EUR</button>
-                <button class="dropdown-item" type="button">GBP</button>
-                <button class="dropdown-item" type="button">CAD</button>
+                <button class="dropdown-item" type="button">EUR (soon)</button>
+                <button class="dropdown-item" type="button">GBP (soon)</button>
+                <button class="dropdown-item" type="button">CAD (soon)</button>
               </div>
             </div>
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">EN</button>
               <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button">FR</button>
-                <button class="dropdown-item" type="button">AR</button>
-                <button class="dropdown-item" type="button">RU</button>
+                <button class="dropdown-item" type="button">FR (soon)</button>
+                <button class="dropdown-item" type="button">AR (soon)</button>
+                <button class="dropdown-item" type="button">RU (soon)</button>
               </div>
             </div>
           </div>
@@ -131,17 +131,10 @@
             </button>
             <div class="collapse navbar-collapse justify-content-between" id="navbarCollapse">
               <div class="navbar-nav mr-auto py-0">
-                <a href="index.html" class="nav-item nav-link active">Home</a>
-                <a href="shop.html" class="nav-item nav-link">Stores</a>
-                <a href="detail.html" class="nav-item nav-link">Shop Detail</a>
-                <div class="nav-item dropdown">
-                  <a href="#" class="nav-link dropdown-toggle" data-toggle="dropdown">Pages <i class="fa fa-angle-down mt-1"></i></a>
-                  <div class="dropdown-menu bg-primary rounded-0 border-0 m-0">
-                    <a href="cart.html" class="dropdown-item">Shopping Cart</a>
-                    <a href="checkout.html" class="dropdown-item">Checkout</a>
-                  </div>
-                </div>
-                <a href="contact.html" class="nav-item nav-link">Contact</a>
+                <%= link_to "Home", root_path, class: "nav-item nav-link" %>
+                <%= link_to "Stores", carts_index_path, class: "nav-item nav-link" %>
+                <%= link_to "Shopping Cart", carts_index_path, class: "nav-item nav-link" %>
+                <%= link_to "Contact", carts_index_path, class: "nav-item nav-link" %>
               </div>
               <div class="navbar-nav ml-auto py-0 d-none d-lg-block">
                 <a href="" class="btn px-0">
