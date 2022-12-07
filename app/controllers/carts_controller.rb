@@ -1,12 +1,14 @@
 class CartsController < ApplicationController
   def index
 
-    session["products"].each do |product_id|
-      products = Product.find(product_id)
-      (@cart ||= []) << products
-
+    unless session["products"].nil?
+      session["products"].each do |product_id|
+        products = Product.find(product_id)
+        (@cart ||= []) << products
+      end
+    else
+      redirect_to controller: :static_pages, action: :home
     end
-    puts @cart
   end
 
 end

@@ -43,8 +43,8 @@
             <div class="btn-group">
               <button type="button" class="btn btn-sm btn-light dropdown-toggle" data-toggle="dropdown">My Account</button>
               <div class="dropdown-menu dropdown-menu-right">
-                <button class="dropdown-item" type="button">Sign in</button>
-                <button class="dropdown-item" type="button">Sign up</button>
+                <%= link_to "Sign In", new_user_session_path, class: "dropdown-item" %>
+                <%= link_to "Sign Up as owner",new_user_registration_path ,class: "dropdown-item" %>
               </div>
             </div>
             <div class="btn-group mx-2">

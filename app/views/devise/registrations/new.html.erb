@@ -1,34 +1,60 @@
-<h2>Sign up</h2>
-
-<%= form_for(resource, as: resource_name, url: registration_path(resource_name)) do |f| %>
-  <%= render "devise/shared/error_messages", resource: resource %>
-
-  <div class="field">
-    <%= f.label :name %><br />
-    <%= f.text_field :name, autofocus: true, autocomplete: "name" %>
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-12">
+      <nav class="breadcrumb bg-light mb-30">
+        <a class="breadcrumb-item text-dark" href="#">Home</a>
+        <span class="breadcrumb-item active">Sign Up</span>
+      </nav>
+    </div>
   </div>
+</div>
+<!-- Breadcrumb End -->
 
-  <div class="field">
-    <%= f.label :email %><br />
-    <%= f.email_field :email, autocomplete: "email" %>
+<div class="container-fluid">
+  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sign Up</span></h2>
+  <div class="row px-xl-5">
+    <div class="col-lg-7 mb-5">
+      <div class="contact-form bg-light p-30">
+        <div id="success"></div>
+          <%= form_for(resource, novalidate: "novalidate", as: resource_name, url: registration_path(resource_name)) do |f| %>
+            <%= render "devise/shared/error_messages", resource: resource %>
+            <div class="control-group">
+              <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control",
+                               placeholder: :name, required: true %>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="control-group">
+              <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: :email, required: true %>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="control-group">
+              <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+                                   placeholder: :password, required: true %>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="control-group">
+              <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+                                   placeholder: :password_confirmation, required: true %>
+              <p class="help-block text-danger"></p>
+            </div>
+
+            <div class="actions">
+              <%= f.submit "Sign up", class: "btn btn-primary py-2 px-4" %>
+            </div>
+          <% end %>
+          <div>
+            <p class="font-weight-bold font-italic">Already have an account ? <%= render "devise/shared/links"%></p>
+          </div>
+      </div>
+    </div>
+      <div class="col-lg-5 mb-5">
+        <div class="bg-light p-30 mb-30">
+          <%= image_tag ('signupillustration'), width: '550px', height: '350px' %>
+        </div>
+      </div>
   </div>
-
-  <div class="field">
-    <%= f.label :password %>
-    <% if @minimum_password_length %>
-    <em>(<%= @minimum_password_length %> characters minimum)</em>
-    <% end %><br />
-    <%= f.password_field :password, autocomplete: "new-password" %>
-  </div>
-
-  <div class="field">
-    <%= f.label :password_confirmation %><br />
-    <%= f.password_field :password_confirmation, autocomplete: "new-password" %>
-  </div>
-
-  <div class="actions">
-    <%= f.submit "Sign up" %>
-  </div>
-<% end %>
-
-<%= render "devise/shared/links" %>
+</div>
