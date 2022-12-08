@@ -1,7 +1,7 @@
 <section class="main">
   <div class="main-top">
     <h1>Admins</h1>
-    <%= link_to new_user_registration_path,style: "margin_left:550px", :role => "admin" do %>
+    <%= link_to new_user_registration_path,style: "margin_left:1550px", :role => "admin" do %>
       <i class="fas fa-user-plus"></i>
     <% end %>
   </div>
@@ -12,19 +12,9 @@
         <%= image_tag('profile.png') %>
         <h4><%= admin.name %></h4>
         <p><%= admin.role %></p>
-        <div class="per">
-          <table>
-            <tr>
-              <td><span>85%</span></td>
-              <td><span>87%</span></td>
-            </tr>
-            <tr>
-              <td>Month</td>
-              <td>Year</td>
-            </tr>
-          </table>
-        </div>
-        <button>Profile</button>
+          <%= button_to 'Profile', root_path%>
+          <%= button_to 'Update', root_path%>
+          <%= button_to 'Delete', root_path%>
       </div>
       <% end %>
     <% end %>
@@ -43,19 +33,10 @@
       <%= image_tag('profile.png') %>
       <h4><%= owner.name %></h4>
       <p><%= owner.role %></p>
-      <div class="per">
-        <table>
-          <tr>
-            <td><span>85%</span></td>
-            <td><span>87%</span></td>
-          </tr>
-          <tr>
-            <td>Month</td>
-            <td>Year</td>
-          </tr>
-        </table>
-      </div>
-      <button>Profile</button>
+
+        <%= button_to 'Profile', root_path%>
+        <%= button_to 'Update', root_path%>
+        <%= button_to 'Delete', root_path%>
     </div>
       <% end %>
     <% end %>
@@ -69,26 +50,16 @@
   </div>
   <div class="users">
     <% unless @costumers.nil? || @costumers.count <= 1 %>
-    <% @costumers.each do |costumer| %>
-      <div class="card">
-      <%= image_tag('profile.png') %>
-      <h4><%= costumer.name %></h4>
-      <p><%= costumer.role %></p>
-      <div class="per">
-        <table>
-          <tr>
-            <td><span>85%</span></td>
-            <td><span>87%</span></td>
-          </tr>
-          <tr>
-            <td>Month</td>
-            <td>Year</td>
-          </tr>
-        </table>
-      </div>
-      <button>Profile</button>
-    </div>
-    <% end %>
+      <% @costumers.each do |costumer| %>
+        <div class="card">
+          <%= image_tag('profile.png') %>
+          <h4><%= costumer.name %></h4>
+          <p><%= costumer.role %></p>
+          <%= button_to 'Profile', root_path%>
+          <%= button_to 'Update', root_path%>
+          <%= button_to 'Delete', root_path%>
+       </div>
+      <% end %>
     <% end %>
   </div>
 </section>

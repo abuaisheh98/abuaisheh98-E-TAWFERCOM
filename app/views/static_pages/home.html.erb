@@ -13,7 +13,7 @@
           <% @products.each do |product| %>
             <% if count == 0 %>
               <div class="carousel-item position-relative active" style="height: 430px;">
-                <%= image_tag(product.image, class: "position-absolute w-100 h-100", style: "object-fit: cover") %>
+                <%= image_tag(handle_url(product.image_url), class: "position-absolute w-100 h-100", style: "object-fit: cover") %>
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div class="p-3" style="max-width: 700px;">
                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"><%= product.categories.first.name %></h1>
@@ -26,7 +26,7 @@
               </div>
             <% else %>
               <div class="carousel-item position-relative" style="height: 430px;">
-                <%= image_tag(product.image, class: "position-absolute w-100 h-100", style: "object-fit: cover") %>
+                <%= image_tag(handle_url(product.image_url), class: "position-absolute w-100 h-100", style: "object-fit: cover") %>
                 <div class="carousel-caption d-flex flex-column align-items-center justify-content-center">
                   <div class="p-3" style="max-width: 700px;">
                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"><%= product.categories.first.name %></h1>
@@ -43,7 +43,7 @@
     </div>
     <div class="col-lg-4">
       <div class="product-offer mb-30" style="height: 200px;">
-        <img class="img-fluid" src="<%= @products.first.image %>" alt="">
+        <img class="img-fluid" src="<%= handle_url(@products.first.image_url) %>" alt="">
         <div class="offer-text">
           <h6 class="text-white text-uppercase">Save 20%</h6>
           <h3 class="text-white mb-3">Special Offer</h3>
@@ -51,7 +51,7 @@
         </div>
       </div>
       <div class="product-offer mb-30" style="height: 200px;">
-        <img class="img-fluid" src="<%= @products.last.image %>" alt="">
+        <img class="img-fluid" src="<%= handle_url(@products.last.image_url) %>" alt="">
         <div class="offer-text">
           <h6 class="text-white text-uppercase">Save 20%</h6>
           <h3 class="text-white mb-3">Special Offer</h3>
@@ -101,7 +101,7 @@
       <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
         <div class="product-item bg-light mb-4">
           <div class="product-img position-relative overflow-hidden">
-            <%= image_tag(featured_product.image, class: "img-fluid w-100", style: "min-height : 326px") %>
+            <%= image_tag(handle_url(featured_product.image_url), class: "img-fluid w-100", style: "min-height : 326px") %>
             <div class="product-action">
               <%= link_to  controller: :static_pages, action: :add_to_cart, :product => featured_product.id,:class => "btn btn-outline-dark btn-square" do %>
                 <i class="fa fa-shopping-cart"></i>
@@ -128,7 +128,7 @@
       <% @offer.each do |offer| %>
       <div class="col-md-6">
         <div class="product-offer mb-30" style="height: 300px;">
-          <%= image_tag(offer.image, class: "img-fluid") %>
+          <%= image_tag(handle_url(offer.image_url), class: "img-fluid") %>
           <div class="offer-text">
             <h6 class="text-white text-uppercase">Save 20%</h6>
             <h3 class="text-white mb-3">Special Offer</h3>
@@ -150,7 +150,7 @@
         <% @x.each do |product| %>
         <div class="product-item bg-light">
           <div class="product-img position-relative overflow-hidden">
-            <%= image_tag(product.image, class: "img-fluid w-100", style: "height: 326px") %>
+            <%= image_tag(handle_url(product.image_url), class: "img-fluid w-100", style: "height: 326px") %>
             <div class="product-action">
               <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
             </div>

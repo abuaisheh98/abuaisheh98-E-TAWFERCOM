@@ -1,7 +1,9 @@
 Rails.application.routes.draw do
+  get 'owners/index'
   get 'admins/index'
   get 'carts/index'
   get 'static_pages/add_to_cart'
+  get 'carts/empty_cart'
   resources :categories
   resources :products
   resources :orders

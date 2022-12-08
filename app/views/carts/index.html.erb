@@ -29,7 +29,7 @@
         <tbody class="align-middle">
         <% @cart.each do |item| %>
           <tr>
-          <td class="align-middle" style="justify-content: center;"><%=image_tag(item.image,style: "width: 50px; height:50px") %> <p><%= item.name %></p></td>
+          <td class="align-middle" style="justify-content: center;"><%=image_tag(handle_url(item.image_url),style: "width: 50px; height:50px") %> <p><%= item.name %></p></td>
           <td class="align-middle">$<%= item.price %></td>
           <td class="align-middle">
             <div class="input-group quantity mx-auto" style="width: 100px;">

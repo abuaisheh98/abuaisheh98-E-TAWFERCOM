@@ -1,9 +1,15 @@
-<h1>New store</h1>
+<section class="main">
+  <section class="attendance">
+    <div class="attendance-list">
+      <h1>New store</h1>
 
-<%= render "form", store: @store %>
+      <%= render "form", store: @store %>
 
-<br>
+      <br>
 
-<div>
-  <%= link_to "Back to stores", stores_path %>
-</div>
+      <div>
+        <%= link_to "Back to stores", stores_path, style: "color: #0D98BA" %>
+      </div>
+    </div>
+  </section>
+</section>
