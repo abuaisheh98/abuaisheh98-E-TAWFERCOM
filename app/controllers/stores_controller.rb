@@ -1,4 +1,5 @@
 class StoresController < ApplicationController
+  before_action :redirect_by_role
   before_action :set_store, only: %i[ show edit update destroy ]
   layout 'dashboard'
 
@@ -59,6 +60,20 @@ class StoresController < ApplicationController
   end
 
   private
+    def redirect_by_role
+      if current_user.present?
+        if current_user.role == "admin"
+          redirect_to controller: :admins, action: :index
+        elsif current_user.role == "owner"
+          redirect_to controller: :owners, action: :index
+        else
+          redirect_to controller: :static_pages, action: :home
+        end
+      else
+        redirect_to controller: :static_pages, action: :home
+      end
+    end
+
     # Use callbacks to share common setup or constraints between actions.
     def set_store
       @store = Store.find(params[:id])
