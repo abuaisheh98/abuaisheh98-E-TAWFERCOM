@@ -238,10 +238,7 @@
 
 
       <li>
-        <%= link_to destroy_user_session_path, class:"logout" do %>
-          <i class="fas fa-sign-out-alt"></i>
-          <span class="nav-item">Log out</span>
-        <% end %>
+        <%= link_to "Sign Out", destroy_user_session_path, method: :delete, class:"logout" %>
       </li>
     </ul>
   </nav>

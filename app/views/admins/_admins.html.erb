@@ -1,0 +1,20 @@
+<div class="main-top">
+  <h1>Admins</h1>
+  <%= link_to new_user_registration_path,style: "margin_left:1550px", :role => "admin" do %>
+    <i class="fas fa-user-plus"></i>
+  <% end %>
+</div>
+<div class="users">
+  <% unless @admins.nil? || @admins.count <= 1 %>
+    <% @admins.each do |admin| %>
+      <div class="card">
+        <%= image_tag('profile.png') %>
+        <h4><%= admin.name %></h4>
+        <p><%= admin.role %></p>
+        <%= button_to 'Profile', root_path%>
+        <%= button_to 'Update', root_path%>
+        <%= button_to 'Delete', root_path%>
+      </div>
+    <% end %>
+  <% end %>
+</div>

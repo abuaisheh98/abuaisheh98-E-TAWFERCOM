@@ -3,8 +3,4 @@ class CartItem
     @product_id = product_id
     @quantity = quantity
   end
-
-  def generate_hash
-    {"product" => @product_id, "quantity" => @quantity}
-  end
 end

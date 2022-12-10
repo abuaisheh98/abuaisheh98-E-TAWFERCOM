@@ -1,0 +1,20 @@
+<div class="main-top">
+  <h1>Costumers</h1>
+  <%= link_to new_user_registration_path, :role => "costumer" do %>
+    <i class="fas fa-user-plus"></i>
+  <% end %>
+</div>
+<div class="users">
+  <% unless @costumers.nil? || @costumers.count <= 1 %>
+    <% @costumers.each do |costumer| %>
+      <div class="card">
+        <%= image_tag('profile.png') %>
+        <h4><%= costumer.name %></h4>
+        <p><%= costumer.role %></p>
+        <%= button_to 'Profile', root_path%>
+        <%= button_to 'Update', root_path%>
+        <%= button_to 'Delete', root_path%>
+      </div>
+    <% end %>
+  <% end %>
+</div>

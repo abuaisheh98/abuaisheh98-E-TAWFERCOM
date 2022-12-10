@@ -1,4 +1,5 @@
 class StaticPagesController < ApplicationController
+  before_action :redirect_by_role, if: -> { current_user.present? }
   def home
     @products = Product.first(3)
     @featured_products = Product.order(price: :asc).first(10)
@@ -7,30 +8,41 @@ class StaticPagesController < ApplicationController
   end
 
   def add_to_cart
-    if session["products"].present?
-      cart_item = CartItem.new(params[:product],1)
-      item = cart_item.generate_hash
-      temporary_array = [session["products"]]
-      index = 0
-      temporary_array.each do |item_in_session|
-        if item_in_session[index]["product"] == item["product"]
-          item_in_session[index]["quantity"] += 1
-          session["products"][index]["quantity"]=item_in_session[index]["quantity"] += 1
-          index += 1
-          break
-        else
-          (session["products"] ||= []) << item
-          break
-        end
-      end
+    unless session["products"].present?
+      item = CartItem.new(params[:product], 1)
+      (session["products"] ||= []) <<  item
     else
-      cart_item = CartItem.new(params[:product],1)
-      item = cart_item.generate_hash
-      (session["products"] ||= []) << item
+      cart = session["products"]
+      item = cart.find {|item| item["product_id"] == params[:product]}
+      if item.present?
+        item["quantity"] += 1
+      else
+        item = CartItem.new(params[:product], 1)
+        cart <<  item
+      end
+      session["products"] = cart
     end
+    redirect_back fallback_location: root_path
+  end
 
-    # (session["products"] ||= []) << params[:product]
-    redirect_to controller: :static_pages,action: :home
+  def remove_from_cart
+    cart = session["products"]
+    item = cart.find {|item| item["product_id"] == params[:product]}
+    if item.present?
+      item["quantity"] -= 1 if item["quantity"] > 1
+    end
+    session["products"] = cart
+
+  redirect_back fallback_location: root_path
+  end
+
+  private
+  def redirect_by_role
+    if current_user.role == "Admin"
+      redirect_to controller: :admins, action: :index
+    elsif current_user.role == "Owner"
+      redirect_to controller: :owners, action: :index
+    end
   end
 
 

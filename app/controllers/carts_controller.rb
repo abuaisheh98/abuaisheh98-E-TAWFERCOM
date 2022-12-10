@@ -1,29 +1,29 @@
 class CartsController < ApplicationController
   before_action :redirect_by_role, if: -> { current_user.present? }
   def index
-    iteration = 0
+    item_view = Struct.new(:product, :quantity)
     if session["products"].nil?
       redirect_to controller: :static_pages, action: :home
     else
-      [session["products"]].each do |product|
-        products = Product.find(product[iteration]["product"])
-        @quantity = product[iteration]["quantity"]
-        (@cart ||= []) << products
-        iteration += 1
-      end
+      @cart = []
+        session["products"].each do |item|
+          puts item.inspect , "================="
+          instace = item_view.new(Product.find(item["product_id"]),item["quantity"])
+          @cart << instace
+        end
+      puts @cart
     end
-    total_price
   end
 
-  def total_price
-    @total = 0.0
-    if session["products"].present?
-      session["products"].each do |product_id|
-        product = Product.find(product_id["product"])
-        @total += product.price
-      end
-    end
-  end
+  # def total_price
+  #   @total = 0.0
+  #   if session["products"].present?
+  #     session["products"].each do |product_id|
+  #       product = Product.find(product_id["product"])
+  #       @total += product.price
+  #     end
+  #   end
+  # end
 
   def checkout
     if current_user.present?
