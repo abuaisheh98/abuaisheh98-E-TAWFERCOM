@@ -71,7 +71,7 @@
             <h5>Total</h5>
             <h5><%= @total+10 %></h5>
           </div>
-          <button class="btn btn-block btn-primary font-weight-bold my-3 py-3">Proceed To Checkout</button>
+          <%= link_to "Proceed To Checkout", {action: :checkout, method: :get},{class: "btn btn-block btn-primary font-weight-bold my-3 py-3"} %>
         </div>
       </div>
     </div>

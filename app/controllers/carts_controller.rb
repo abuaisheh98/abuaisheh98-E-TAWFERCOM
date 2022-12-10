@@ -25,6 +25,14 @@ class CartsController < ApplicationController
     end
   end
 
+  def checkout
+    if current_user.present?
+
+    else
+      redirect_to new_user_session_path
+    end
+  end
+
   # def set_quantity_and_price
   #   if session["products"].present?
   #     params[:quantity] += 1
