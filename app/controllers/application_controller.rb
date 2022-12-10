@@ -39,11 +39,6 @@ class ApplicationController < ActionController::Base
     end
 
     def layout_by_resource
-      # if devise_controller?
-      #   'devise_layout'
-      # else
-      #   'application'
-      # end
       if current_user.present?
         (current_user.role == 'admin' or current_user.role == 'owner') ? 'dashboard' : 'application'
       else

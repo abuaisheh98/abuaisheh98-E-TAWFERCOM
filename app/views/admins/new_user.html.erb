@@ -1,0 +1,62 @@
+<!-- Breadcrumb Start -->
+<div class="container-fluid">
+  <div class="row px-xl-5">
+    <div class="col-12">
+      <nav class="breadcrumb bg-light mb-30">
+        <a class="breadcrumb-item text-dark" href="#">Home</a>
+        <span class="breadcrumb-item active">Sign Up</span>
+      </nav>
+    </div>
+  </div>
+</div>
+<!-- Breadcrumb End -->
+
+<div class="container-fluid">
+  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Sign Up</span></h2>
+  <div class="row px-xl-5">
+    <div class="col-lg-7 mb-5">
+      <div class="contact-form bg-light p-30">
+        <div id="success"></div>
+        <%= form_with url: admins_create_user_path do |f| %>
+          <div class="control-group">
+            <%= f.text_field :name, autofocus: true, autocomplete: "name", class: "form-control",
+                             placeholder: :name, required: true %>
+            <p class="help-block text-danger"></p>
+          </div>
+
+          <div class="control-group">
+            <%= f.email_field :email, autocomplete: "email", class: "form-control", placeholder: :email, required: true %>
+            <p class="help-block text-danger"></p>
+          </div>
+
+          <div class="control-group">
+            <%= f.password_field :password, autocomplete: "new-password", class: "form-control",
+                                 placeholder: :password, required: true %>
+            <p class="help-block text-danger"></p>
+          </div>
+
+          <div class="control-group">
+            <%= f.password_field :password_confirmation, autocomplete: "new-password", class: "form-control",
+                                 placeholder: :password_confirmation, required: true %>
+            <p class="help-block text-danger"></p>
+          </div>
+
+          <div class="control-group">
+            <%= f.hidden_field :role, value: params[:role], class: "form-control"%>
+            <p class="help-block text-danger"></p>
+          </div>
+
+
+          <div class="actions">
+            <%= f.submit "Create", class: "btn btn-primary py-2 px-4" %>
+          </div>
+        <% end %>
+      </div>
+    </div>
+    <div class="col-lg-5 mb-5">
+      <div class="bg-light p-30 mb-30">
+        <%= image_tag ('signupillustration'), width: '550px', height: '350px' %>
+      </div>
+    </div>
+  </div>
+</div>

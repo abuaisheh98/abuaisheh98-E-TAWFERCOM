@@ -13,7 +13,7 @@ class User < ApplicationRecord
   validates :name, format: {without: /[0-9]/, message: "Numbers are not allowed"}
   validates :name, length: {minimum: 3}
   validates :name, :email, presence: true
-  enum role: [:customer, :owner, :Admin]
+  enum role: [:customer, :owner, :admin]
   after_initialize :set_default_role, :if => :new_record?
 
   def set_default_role

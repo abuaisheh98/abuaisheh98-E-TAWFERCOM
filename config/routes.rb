@@ -7,6 +7,8 @@ Rails.application.routes.draw do
   get 'carts/set_quantity_and_price'
   get 'carts/checkout'
   post 'static_pages/remove_from_cart'
+  post 'admins/create_user'
+  get 'admins/new_user'
   resources :admins
   resources :categories
   resources :products

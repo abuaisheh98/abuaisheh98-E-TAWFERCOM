@@ -38,9 +38,9 @@ class StaticPagesController < ApplicationController
 
   private
   def redirect_by_role
-    if current_user.role == "Admin"
+    if current_user.role == "admin"
       redirect_to controller: :admins, action: :index
-    elsif current_user.role == "Owner"
+    elsif current_user.role == "owner"
       redirect_to controller: :owners, action: :index
     end
   end

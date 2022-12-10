@@ -2,10 +2,20 @@ class AdminsController < ApplicationController
   before_action :user_params
   before_action :get_users_data, only: [:index]
   before_action :check_session
-  before_action :redirect_by_role, if: -> { current_user.role != 'Admin' }
+  before_action :redirect_by_role, if: -> { current_user.role != 'admin' }
   layout 'dashboard'
 
   def index
+  end
+
+  def new_user
+    @user = User.new
+  end
+
+  def create_user
+    @user = User.new(user_params)
+    @user.save
+    redirect_to action: :index
   end
 
   private
@@ -17,8 +27,6 @@ class AdminsController < ApplicationController
 
   def redirect_by_role
     if current_user.present?
-      # if current_user.role == "admin"
-      #   redirect_to action: :index
       if current_user.role == "owner"
         redirect_to controller: :owners, action: :index
       else
@@ -34,6 +42,6 @@ class AdminsController < ApplicationController
   end
 
   def user_params
-    params.permit(:name, :email, :password, :role)
+    params.permit(:name, :email, :password, :password_confirmation, :role)
   end
 end
