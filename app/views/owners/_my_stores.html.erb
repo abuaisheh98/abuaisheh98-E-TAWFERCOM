@@ -1,0 +1,30 @@
+<section class="attendance">
+  <div class="attendance-list">
+    <h1>My Stores</h1>
+    <%= link_to "Create Store", new_store_path, style: "color: #0D98BA" %>
+    <table class="table">
+      <thead>
+      <tr>
+        <th>ID</th>
+        <th>Name</th>
+        <th>Owner</th>
+        <th>Created At</th>
+        <th>Actions</th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr>
+        <td>01</td>
+        <td>Sam David</td>
+        <td>Laith Abuaisheh</td>
+        <td>03-24-22</td>
+        <td>
+          <%= button_to "View", store_path(1), style: "width:90px" %>
+          <%= button_to "Update", edit_store_path(1), style: "width:90px" %>
+          <%= button_to "Delete", root_path, style: "width:90px" %>
+        </td>
+      </tr>
+      </tbody>
+    </table>
+  </div>
+</section>
