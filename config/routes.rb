@@ -4,6 +4,7 @@ Rails.application.routes.draw do
   get 'carts/index'
   get 'static_pages/add_to_cart'
   get 'carts/empty_cart'
+  get 'carts/set_quantity_and_price'
   resources :categories
   resources :products
   resources :orders

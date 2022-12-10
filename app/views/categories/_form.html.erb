@@ -11,12 +11,11 @@
     </div>
   <% end %>
 
-  <div>
-    <%= form.label :name, style: "display: block" %>
-    <%= form.text_field :name %>
+  <div class="attendance-list">
+    <%= form.text_field :name, placeholder: :name %>
   </div>
 
-  <div>
+  <div class="attendance-list" style="background-color: #1c7430; padding-left: 600px">
     <%= form.submit %>
   </div>
 <% end %>

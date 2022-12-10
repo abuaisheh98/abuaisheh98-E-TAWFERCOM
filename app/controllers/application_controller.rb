@@ -14,9 +14,11 @@ class ApplicationController < ActionController::Base
   end
 
   def session_expiry
-    if session[:expires_at].to_time < Time.now
-      flash.now[:error] = "Your session has timed out. Please log back in."
-      session["products"] = nil
+    if session[:expires_at].present?
+      if session[:expires_at].to_time < Time.now
+        flash.now[:error] = "Your session has timed out. Please log back in."
+        session["products"] = nil
+      end
     end
   end
 
