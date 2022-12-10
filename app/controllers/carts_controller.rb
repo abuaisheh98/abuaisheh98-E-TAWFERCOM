@@ -27,7 +27,7 @@ class CartsController < ApplicationController
 
   def checkout
     if current_user.present?
-
+      redirect_to root_path
     else
       redirect_to new_user_session_path
     end
