@@ -1,0 +1,27 @@
+<!-- Products Start -->
+<div class="container-fluid pt-5 pb-3">
+  <h2 class="section-title position-relative text-uppercase mx-xl-5 mb-4"><span class="bg-secondary pr-3">Featured Products</span></h2>
+  <div class="row px-xl-5">
+    <% @featured_products.each do |featured_product| %>
+      <div class="col-lg-3 col-md-4 col-sm-6 pb-1">
+        <div class="product-item bg-light mb-4">
+          <div class="product-img position-relative overflow-hidden">
+            <%= image_tag(handle_url(featured_product.image_url), class: "img-fluid w-100", style: "min-height : 326px") %>
+            <div class="product-action">
+              <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (featured_product.id) do %>
+                <i class="fa fa-shopping-cart"></i>
+              <% end %>
+            </div>
+          </div>
+          <div class="text-center py-4">
+            <a class="h6 text-decoration-none text-truncate" href=""><%= featured_product.name %></a>
+            <div class="d-flex align-items-center justify-content-center mt-2">
+              <h5>$<%= featured_product.price %></h5>
+            </div>
+          </div>
+        </div>
+      </div>
+    <% end %>
+  </div>
+</div>
+<!-- Products End -->
