@@ -227,13 +227,31 @@
     <ul>
       <li><a href="#" class="logo">
         <%= image_tag('profile.png') %>
-        <span class="nav-item">Admin</span>
+        <span class="nav-item"><%= current_user.name %></span>
       </a></li>
       <li>
         <%= link_to root_path do %>
           <i class="fas fa-menorah"></i>
           <span class="nav-item">Dashboard</span>
        <% end %>
+        <% if current_user.role == 'admin' %>
+            <%= link_to admins_display_categories_path do %>
+              <i class="fas fa-chart-bar"></i>
+              <span class="nav-item">Categories</span>
+            <% end %>
+
+            <%= link_to admins_display_stores_path do %>
+              <i class="fas fa-database"></i>
+              <span class="nav-item">Stores</span>
+            <% end %>
+
+        <% else %>
+
+          <%= link_to root_path do %>
+            <i class="fas fa-menorah"></i>
+            <span class="nav-item">Settings</span>
+          <% end %>
+        <% end %>
       </li>
 
 
@@ -243,8 +261,8 @@
     </ul>
   </nav>
 
+  <%= yield %>
 
-    <%= yield %>
 </div>
 
 </body>

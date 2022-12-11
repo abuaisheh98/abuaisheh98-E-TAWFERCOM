@@ -1,0 +1,22 @@
+<div class="container" style="display:flex; flex-wrap: wrap; width: 100%">
+  <section class="main">
+    <div class="main-top">
+      <h1>Categories</h1>
+      <%= link_to new_category_path do %>
+        <i class="fas fa-user-plus"></i>
+      <% end %>
+    </div>
+    <div class="users" style="display:flex; flex-wrap: wrap; width: 100%">
+      <% @stores.each do |store| %>
+        <div class="card" >
+          <%= image_tag('profile.png') %>
+          <h4><%= store.name %></h4>
+          <p><%= store.user_id %></p>
+          <p><%= link_to "Show Products", admins_products_by_stores_path(id: store.id) %></p>
+          <%= button_to 'Update', root_path%>
+          <%= button_to 'Delete', root_path%>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

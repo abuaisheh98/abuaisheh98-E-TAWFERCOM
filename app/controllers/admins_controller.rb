@@ -8,14 +8,43 @@ class AdminsController < ApplicationController
   def index
   end
 
+  def display_categories
+  end
+
+  def display_stores
+    @stores = Store.all
+  end
+
   def new_user
     @user = User.new
+  end
+
+  def edit
+    @user = User.find(params[:id])
+  end
+
+  def update
+    parameters = params.require(:user).permit(:id, :email, :name, :password, :password_confirmation, :role)
+    @user = User.find(parameters['id'].to_i)
+    @user.update!(parameters)
+    redirect_to root_path
+  end
+
+  def products_by_categories
+    @products_by_category = (Category.find(params[:id])).products
+  end
+
+  def products_by_stores
+    @products_by_store = (Store.find(params[:id])).products
   end
 
   def create_user
     @user = User.new(user_params)
     @user.save
     redirect_to action: :index
+  end
+
+  def show_user
   end
 
   private
@@ -39,6 +68,10 @@ class AdminsController < ApplicationController
 
   def check_session
     (redirect_to controller: :static_pages, action: :home )unless current_user.present?
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def user_params

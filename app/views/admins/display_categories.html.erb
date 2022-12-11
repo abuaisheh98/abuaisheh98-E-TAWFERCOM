@@ -1,0 +1,21 @@
+<div class="container" style="display:flex; flex-wrap: wrap; width: 100%">
+  <section class="main">
+    <div class="main-top">
+      <h1>Categories</h1>
+      <%= link_to new_category_path do %>
+        <i class="fas fa-user-plus"></i>
+      <% end %>
+    </div>
+    <div class="users" style="display:flex; flex-wrap: wrap; width: 100%">
+      <% @categories.each do |category| %>
+        <div class="card" >
+          <%= image_tag('profile.png') %>
+          <h4><%= category.name %></h4>
+          <p><%= link_to "Show Products", admins_products_by_categories_path(id: category.id)%></p>
+          <%= button_to 'Update', root_path%>
+          <%= button_to 'Delete', root_path%>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

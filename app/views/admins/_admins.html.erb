@@ -11,8 +11,7 @@
         <%= image_tag('profile.png') %>
         <h4><%= admin.name %></h4>
         <p><%= admin.role %></p>
-        <%= button_to 'Profile', root_path%>
-        <%= button_to 'Update', root_path%>
+        <%= link_to 'Update', edit_user_path(admin)%>
         <%= button_to 'Delete', root_path%>
       </div>
     <% end %>
