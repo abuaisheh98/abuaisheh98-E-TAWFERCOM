@@ -15,6 +15,7 @@ Rails.application.routes.draw do
   get 'admins/products_by_stores'
   get 'admins/edit_user/:id', as: 'edit_user',to: 'admins#edit'
   patch 'admins/update', as: 'edit_user_update', to: 'admins#update'
+  delete 'admins/destroy/:id', as: 'admins_destroy', to: 'admins#destroy'
   resources :admins
   resources :categories
   resources :products

@@ -30,6 +30,13 @@ class AdminsController < ApplicationController
     redirect_to root_path
   end
 
+  def destroy
+    @user = User.find(params[:id])
+    @user.destroy
+
+    redirect_to root_path
+  end
+
   def products_by_categories
     @products_by_category = (Category.find(params[:id])).products
   end

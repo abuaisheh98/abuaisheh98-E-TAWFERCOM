@@ -12,7 +12,7 @@
         <h4><%= admin.name %></h4>
         <p><%= admin.role %></p>
         <%= link_to 'Update', edit_user_path(admin)%>
-        <%= button_to 'Delete', root_path%>
+        <%= button_to 'Delete', admins_destroy_path(admin), method: :delete%>
       </div>
     <% end %>
   <% end %>
