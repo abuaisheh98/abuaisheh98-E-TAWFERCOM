@@ -9,17 +9,16 @@ class OwnersController < ApplicationController
   private
   def get_data
     @orders = Order.all
-    @stores = Store.all
-    @product = Product.all
+    @products_in_order =
+    @stores = Store.find_by_user_id(current_user.id)
+    @products = (Store.find_by_user_id(current_user.id)).products
   end
 
   def redirect_by_role
     if current_user.present?
       if current_user.role == "admin"
         redirect_to controller: :admins, action: :index
-      elsif current_user.role == "owner"
-        redirect_to action: :index
-      else
+      elsif current_user.role == "customer"
         redirect_to controller: :static_pages, action: :home
       end
     else

@@ -16,20 +16,22 @@
       </tr>
       </thead>
       <tbody>
+      <% @products.each do |product|%>
       <tr>
-        <td>01</td>
-        <td>Sam David</td>
-        <td>Design</td>
-        <td>03-24-22</td>
-        <td>8:00AM</td>
-        <td>3:00PM</td>
-        <td>3:00PM</td>
+        <td><%= product.id %></td>
+        <td><%= product.name %></td>
+        <td><%= product.price %></td>
+        <td><%= product.production_dste %></td>
+        <td><%= product.expiry_date %></td>
+        <td><%= product.stock_quantity %></td>
+        <td><%= product.store.name %></td>
         <td>
           <%= button_to "View", product_path(1), style: "width:90px" %>
           <%= button_to "Update", edit_product_path(1)	, style: "width:90px" %>
           <%= button_to "Delete", root_path, style: "width:90px" %>
         </td>
       </tr>
+      <% end %>
       </tbody>
     </table>
   </div>

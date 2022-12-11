@@ -62,12 +62,10 @@ class CategoriesController < ApplicationController
   private
     def redirect_by_role
       if current_user.present?
-        if current_user.role == "admin"
-          redirect_to controller: :admins, action: :index
-        elsif current_user.role == "owner"
+        if current_user.role == "owner"
           redirect_to controller: :owners, action: :index
-        else
-          redirect_to controller: :static_pages, action: :home
+        elsif current_user.role == "customer"
+          redirect_to controller: :owners, action: :index
         end
       else
         redirect_to controller: :static_pages, action: :home
