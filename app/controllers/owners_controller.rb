@@ -9,9 +9,19 @@ class OwnersController < ApplicationController
   private
   def get_data
     @orders = Order.all
-    @products_in_order =
-    @stores = Store.find_by_user_id(current_user.id)
-    @products = (Store.find_by_user_id(current_user.id)).products
+    @my_orders = []
+    @orders.each do |order|
+      order.products.each do |product|
+        if Store.find(product.store_id ).user_id == current_user.id
+          @my_orders << order
+        end
+      end
+    end
+    @stores = current_user.stores
+    @products = []
+    @stores.each do |store|
+      @products += store.products
+     end
   end
 
   def redirect_by_role

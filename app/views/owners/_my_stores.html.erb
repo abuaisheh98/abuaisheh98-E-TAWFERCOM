@@ -7,23 +7,19 @@
       <tr>
         <th>ID</th>
         <th>Name</th>
-        <th>Owner</th>
+        <th>User</th>
         <th>Created At</th>
-        <th>Actions</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>01</td>
-        <td>Sam David</td>
-        <td>Laith Abuaisheh</td>
-        <td>03-24-22</td>
-        <td>
-          <%= button_to "View", store_path(1), style: "width:90px" %>
-          <%= button_to "Update", edit_store_path(1), style: "width:90px" %>
-          <%= button_to "Delete", root_path, style: "width:90px" %>
-        </td>
-      </tr>
+          <% @stores.each do |store|  %>
+            <tr>
+              <td><%= store.id %></td>
+              <td><%= store.name %></td>
+              <td><%= store.user_id %></td>
+              <td><%= store.created_at %></td>
+            </tr>
+          <% end %>
       </tbody>
     </table>
   </div>

@@ -5,22 +5,42 @@
       <thead>
       <tr>
         <th>ID</th>
-        <th>Costumer Name</th>
-        <th>Quantity</th>
         <th>Status</th>
-        <th>Actions</th>
+        <th>Quantity</th>
+        <th>Date</th>
+        <th>Costumer</th>
+        <th>Product</th>
       </tr>
       </thead>
       <tbody>
-      <tr>
-        <td>01</td>
-        <td>Sam David</td>
-        <td>03-24-22</td>
-        <td>03-24-22</td>
-        <td>
-          <%= button_to "View", order_path(1), style: "width:90px" %>
-        </td>
-      </tr>
+        <% if @my_orders.length > 1 %>
+          <% @my_orders.each do |my_order| %>
+            <tr>
+              <td><%= my_order.id %></td>
+              <td><%= my_order.status %></td>
+              <td><%= my_order.quantity %></td>
+              <td><%= my_order.order_date %></td>
+              <td><%= my_order.user_id %></td>
+              <td><%= my_order.products.first.name %></td>
+            </tr>
+          <% end %>
+        <% elsif @my_orders.length == 1%>
+          <tr>
+            <td><%= @my_orders.id %></td>
+            <td><%= @my_orders.status %></td>
+            <td><%= @my_orders.quantity %></td>
+            <td><%= @my_orders.order_date %></td>
+            <td><%= @my_orders.user_id %></td>
+          </tr>
+        <% else %>
+        <tr>
+          <td>--------------</td>
+          <td>--------------</td>
+          <td>--------------</td>
+          <td>--------------</td>
+          <td>--------------</td>
+        </tr>
+        <% end %>
       </tbody>
     </table>
   </div>
