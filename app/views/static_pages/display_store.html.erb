@@ -1,0 +1,15 @@
+<div class="container" style="display:flex; flex-wrap: wrap; width: 100%">
+  <section class="main">
+    <div class="main-top">
+    </div>
+    <div class="users" style="display:flex; flex-wrap: wrap; width: 100%">
+      <% @stores.each do |store| %>
+        <div class="card" >
+          <%= image_tag('store.png') %>
+          <h4><%= store.name %></h4>
+          <%= link_to "Show Products", static_pages_products_by_stores_path(id: store.id) %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

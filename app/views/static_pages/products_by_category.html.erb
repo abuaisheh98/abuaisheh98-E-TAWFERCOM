@@ -1,0 +1,19 @@
+<div class="container" style="display:flex; flex-wrap: wrap; width: 100%">
+  <section class="main">
+    <div class="main-top">
+      <h1><%= @category_name %></h1>
+    </div>
+    <div class="users" style="display:flex; flex-wrap: wrap; width: 100%">
+      <% @products_by_category.each do |product| %>
+        <div class="card" >
+          <%= image_tag(handle_url(product.image_url)) %>
+          <h4><%= product.name %></h4>
+          <p><%= product.price %></p>
+          <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (product.id) do %>
+            <i class="fa fa-shopping-cart"></i>
+          <% end %>
+        </div>
+      <% end %>
+    </div>
+  </section>
+</div>

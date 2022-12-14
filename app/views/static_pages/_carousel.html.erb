@@ -18,8 +18,9 @@
                   <div class="p-3" style="max-width: 700px;">
                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"><%= product.categories.first.name %></h1>
                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn"><%= product.description %></p>
-                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop
-                      Now</a>
+                    <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (product.id) do %>
+                      <i class="fa fa-shopping-cart"></i>
+                    <% end %>
                     <% count += 1 %>
                   </div>
                 </div>
@@ -31,8 +32,9 @@
                   <div class="p-3" style="max-width: 700px;">
                     <h1 class="display-4 text-white mb-3 animate__animated animate__fadeInDown"><%= product.categories.first.name %></h1>
                     <p class="mx-md-5 px-5 animate__animated animate__bounceIn"><%= product.description %></p>
-                    <a class="btn btn-outline-light py-2 px-4 mt-3 animate__animated animate__fadeInUp" href="#">Shop
-                      Now</a>
+                    <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (product.id) do %>
+                      <i class="fa fa-shopping-cart"></i>
+                    <% end %>
                   </div>
                 </div>
               </div>
@@ -47,7 +49,9 @@
         <div class="offer-text">
           <h6 class="text-white text-uppercase">Save 20%</h6>
           <h3 class="text-white mb-3">Special Offer</h3>
-          <a href="" class="btn btn-primary">Shop Now</a>
+          <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (@products.first.id) do %>
+            <i class="fa fa-shopping-cart"></i>
+          <% end %>
         </div>
       </div>
       <div class="product-offer mb-30" style="height: 200px;">
@@ -55,7 +59,9 @@
         <div class="offer-text">
           <h6 class="text-white text-uppercase">Save 20%</h6>
           <h3 class="text-white mb-3">Special Offer</h3>
-          <a href="" class="btn btn-primary">Shop Now</a>
+          <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (@products.last.id) do %>
+            <i class="fa fa-shopping-cart"></i>
+          <% end %>
         </div>
       </div>
     </div>

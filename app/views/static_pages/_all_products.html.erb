@@ -4,12 +4,14 @@
   <div class="row px-xl-5">
     <div class="col">
       <div class="owl-carousel related-carousel">
-        <% @x.each do |product| %>
+        <% @low_price.each do |product| %>
           <div class="product-item bg-light">
             <div class="product-img position-relative overflow-hidden">
               <%= image_tag(handle_url(product.image_url), class: "img-fluid w-100", style: "height: 326px") %>
               <div class="product-action">
-                <a class="btn btn-outline-dark btn-square" href=""><i class="fa fa-shopping-cart"></i></a>
+                <%= link_to  controller: :static_pages, action: :add_to_cart, :product => (product.id) do %>
+                  <i class="fa fa-shopping-cart"></i>
+                <% end %>
               </div>
             </div>
             <div class="text-center py-4">
