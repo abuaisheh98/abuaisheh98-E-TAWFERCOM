@@ -1,0 +1,29 @@
+<center>
+  <div class="container" style="width: 60%">
+    <table id="products_datatables">
+      <thead>
+      <th>ID</th>
+      <th>Name</th>
+      <th>Price</th>
+      <th>Description</th>
+      </thead>
+    </table>
+  </div>
+</center>
+
+<script type="text/javascript">
+    jQuery('#products_datatables').dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": $('#products_datatables').data('source')
+        },
+        "pagingType": "full_numbers",
+        "columns": [
+            {"data": "id"},
+            {"data": "name"},
+            {"data": "price"},
+            {"data": "description"},
+        ]
+    })
+</script>

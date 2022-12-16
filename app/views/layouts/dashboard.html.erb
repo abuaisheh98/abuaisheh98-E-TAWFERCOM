@@ -220,6 +220,7 @@
   <!-- CSS only -->
   <!-- Font Awesome Cdn Link -->
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css"/>
+  <link rel="stylesheet" href="https://cdn.datatables.net/1.13.1/css/jquery.dataTables.min.css"/>
 </head>
 <body>
 <div class="container">
@@ -245,6 +246,11 @@
               <span class="nav-item">Stores</span>
             <% end %>
 
+          <%= link_to admins_display_products_path do %>
+            <i class="fas fa-database"></i>
+            <span class="nav-item">Products</span>
+          <% end %>
+
         <% else %>
 
           <%= link_to root_path do %>
@@ -260,6 +266,10 @@
       </li>
     </ul>
   </nav>
+  <script src="https://code.jquery.com/jquery-3.6.2.js"
+          integrity="sha256-pkn2CUZmheSeyssYw3vMp1+xyub4m+e+QK4sQskvuo4=" crossorigin="anonymous"></script>
+
+  <script type="text/javascript" src="https://cdn.datatables.net/1.13.1/js/jquery.dataTables.min.js"></script>
 
   <%= yield %>
 

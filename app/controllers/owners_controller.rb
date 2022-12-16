@@ -3,25 +3,18 @@ class OwnersController < ApplicationController
   before_action :get_data
   layout "dashboard"
   def index
+    respond_to do |format|
+      format.html
+      format.json {render json: OrderDatatable.new(params, {current_user: current_user.id})}
+    end
   end
 
 
   private
   def get_data
-    @orders = Order.all
-    @my_orders = []
-    @orders.each do |order|
-      order.products.each do |product|
-        if Store.find(product.store_id ).user_id == current_user.id
-          @my_orders << order
-        end
-      end
-    end
+    #@my_orders = Order.joins( :products => :store ).where(stores: {user_id: current_user.id })
     @stores = current_user.stores
-    @products = []
-    @stores.each do |store|
-      @products += store.products
-     end
+    @products = @stores.map{|store| store.products}.flatten
   end
 
   def redirect_by_role

@@ -11,6 +11,13 @@ class AdminsController < ApplicationController
   def display_categories
   end
 
+  def display_products
+    respond_to do |format|
+      format.html
+      format.json{render json: ProductDatatable.new(params)}
+    end
+  end
+
   def display_stores
     @stores = Store.all
   end

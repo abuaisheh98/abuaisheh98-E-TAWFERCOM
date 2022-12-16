@@ -1,47 +1,38 @@
 <section class="attendance">
   <div class="attendance-list">
-    <h1>Orders</h1>
-    <table class="table">
+    <h1>Purchase Item</h1>
+    <table class="table" id="order-datatable">
       <thead>
       <tr>
         <th>ID</th>
         <th>Status</th>
         <th>Quantity</th>
-        <th>Date</th>
-        <th>Costumer</th>
-        <th>Product</th>
+        <th>Order Date</th>
+        <th>Customer</th>
+        <th>Products</th>
       </tr>
       </thead>
       <tbody>
-        <% if @my_orders.length > 1 %>
-          <% @my_orders.each do |my_order| %>
-            <tr>
-              <td><%= my_order.id %></td>
-              <td><%= my_order.status %></td>
-              <td><%= my_order.quantity %></td>
-              <td><%= my_order.order_date %></td>
-              <td><%= my_order.user_id %></td>
-              <td><%= my_order.products.first.name %></td>
-            </tr>
-          <% end %>
-        <% elsif @my_orders.length == 1%>
-          <tr>
-            <td><%= @my_orders.id %></td>
-            <td><%= @my_orders.status %></td>
-            <td><%= @my_orders.quantity %></td>
-            <td><%= @my_orders.order_date %></td>
-            <td><%= @my_orders.user_id %></td>
-          </tr>
-        <% else %>
-        <tr>
-          <td>--------------</td>
-          <td>--------------</td>
-          <td>--------------</td>
-          <td>--------------</td>
-          <td>--------------</td>
-        </tr>
-        <% end %>
       </tbody>
     </table>
   </div>
 </section>
+
+<script type="text/javascript">
+    jQuery('#order-datatable').dataTable({
+        "processing": true,
+        "serverSide": true,
+        "ajax": {
+            "url": $('#order-datatable').data('source')
+        },
+        "pagingType": "full_numbers",
+        "columns": [
+            {"data": "id"},
+            {"data": "status"},
+            {"data": "quantity"},
+            {"data": "order_date"},
+            {"data": "user_id"},
+            {"data": "products"}
+        ]
+    })
+</script>

@@ -14,6 +14,7 @@ Rails.application.routes.draw do
   post 'admins/create_user'
   get 'admins/new_user'
   get 'admins/display_categories'
+  get 'admins/display_products'
   get 'admins/display_stores'
   get 'admins/products_by_categories'
   get 'admins/products_by_stores'
@@ -27,9 +28,5 @@ Rails.application.routes.draw do
   resources :stores
   root 'static_pages#home'
   devise_for :users
-
-  # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
-
-  # Defines the root path route ("/")
-  # root "articles#index"
+  
 end

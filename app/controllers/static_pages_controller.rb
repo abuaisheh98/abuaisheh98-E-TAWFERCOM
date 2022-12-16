@@ -30,7 +30,7 @@ class StaticPagesController < ApplicationController
     if params[:search].blank?
       redirect_to action: :home
     else
-      @result = Product.by_name(params[:search].downcase)[0]
+      @results = Product.where("name like ?","#{params[:search].downcase}%")
     end
   end
 
@@ -67,7 +67,4 @@ class StaticPagesController < ApplicationController
       redirect_to controller: :owners, action: :index
     end
   end
-
-
-
 end
