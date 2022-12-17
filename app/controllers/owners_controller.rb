@@ -12,7 +12,6 @@ class OwnersController < ApplicationController
 
   private
   def get_data
-    #@my_orders = Order.joins( :products => :store ).where(stores: {user_id: current_user.id })
     @stores = current_user.stores
     @products = @stores.map{|store| store.products}.flatten
   end

@@ -29,7 +29,11 @@ class CartsController < ApplicationController
         order.user_id = current_user.id
         order.save!
         session["checkout"].each do |item|
-          order.products << Product.find(item["product"]["id"])
+          order_item =OrderItem.new
+          order_item.order = order
+          order_item.product = Product.find(item["product"]["id"])
+          order_item.amount = item["quantity"]
+          order_item.save!
         end
         session["checkout"] = nil
         redirect_to controller: :static_pages, action: :home

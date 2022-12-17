@@ -26,6 +26,17 @@ class StaticPagesController < ApplicationController
     redirect_back fallback_location: root_path
   end
 
+  def remove_from_cart
+    cart = session["products"]
+    item = cart.find {|item| item["product_id"] == params[:product]}
+    if item.present?
+      item["quantity"] -= 1 if item["quantity"] > 1
+    end
+    session["products"] = cart
+
+    redirect_back fallback_location: root_path
+  end
+
   def search
     if params[:search].blank?
       redirect_to action: :home
@@ -46,17 +57,6 @@ class StaticPagesController < ApplicationController
   def products_by_stores
     @store_name = Store.find(params[:id]).name
     @products_by_store = (Store.find(params[:id])).products
-  end
-
-  def remove_from_cart
-    cart = session["products"]
-    item = cart.find {|item| item["product_id"] == params[:product]}
-    if item.present?
-      item["quantity"] -= 1 if item["quantity"] > 1
-    end
-    session["products"] = cart
-
-  redirect_back fallback_location: root_path
   end
 
   private

@@ -1,7 +1,9 @@
 class Product < ApplicationRecord
   belongs_to :store
   has_and_belongs_to_many :categories
-  has_and_belongs_to_many :orders
+  has_many :order_items
+  has_many :orders, through: :order_items
+  #has_and_belongs_to_many :orders
   mount_uploader :image, ImageuploaderUploader
 
   #validates :production_dste, comparison: {greater_than: :expiry_date}
