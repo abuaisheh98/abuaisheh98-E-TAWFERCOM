@@ -7,10 +7,13 @@ Rails.application.routes.draw do
   get 'static_pages/display_store'
   get 'static_pages/products_by_stores'
   get 'static_pages/products_by_category'
+  #delete
   get 'carts/empty_cart'
+  #post
   get 'carts/set_quantity_and_price'
-  get 'carts/checkout'
-  post 'static_pages/remove_from_cart'
+  post 'carts/checkout'
+  #delete
+  post 'carts/remove_from_cart'
   post 'admins/create_user'
   get 'admins/new_user'
   get 'admins/display_categories'
@@ -18,6 +21,8 @@ Rails.application.routes.draw do
   get 'admins/display_stores'
   get 'admins/products_by_categories'
   get 'admins/products_by_stores'
+  get 'admins/import_products'
+  post 'admins/import'
   get 'admins/edit_user/:id', as: 'edit_user',to: 'admins#edit'
   patch 'admins/update', as: 'edit_user_update', to: 'admins#update'
   delete 'admins/destroy/:id', as: 'admins_destroy', to: 'admins#destroy'

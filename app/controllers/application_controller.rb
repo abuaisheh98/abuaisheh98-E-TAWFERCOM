@@ -13,6 +13,7 @@ class ApplicationController < ActionController::Base
     end
   end
 
+  #Verify the validity of the session
   def session_expiry
     if session[:expires_at].present?
       if session[:expires_at].to_time < Time.now
@@ -26,23 +27,25 @@ class ApplicationController < ActionController::Base
     session[:expires_at] = Time.now + 2.minutes
   end
 
-    protected
+  protected
 
-    def configure_permitted_parameters
-      devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
-    end
+  #Add fields to devise
+  def configure_permitted_parameters
+    devise_parameter_sanitizer.permit(:sign_up, keys: [:name, :role])
+  end
 
-    private
+  private
 
-    def get_categories_data
-      @categories = Category.all
-    end
+  def get_categories_data
+    @categories = Category.all
+  end
 
-    def layout_by_resource
-      if current_user.present?
-        (current_user.role == 'admin' or current_user.role == 'owner') ? 'dashboard' : 'application'
-      else
-        'application'
-      end
+  #Display layout by role
+  def layout_by_resource
+    if current_user.present?
+      (current_user.role == 'admin' or current_user.role == 'owner') ? 'dashboard' : 'application'
+    else
+      'application'
     end
   end
+end

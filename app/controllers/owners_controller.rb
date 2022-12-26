@@ -2,6 +2,8 @@ class OwnersController < ApplicationController
   before_action :redirect_by_role
   before_action :get_data
   layout "dashboard"
+
+  #Display purchase items in datatable
   def index
     respond_to do |format|
       format.html

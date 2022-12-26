@@ -3,8 +3,7 @@
   <div class="row px-xl-5">
     <div class="col-12">
       <nav class="breadcrumb bg-light mb-30">
-        <a class="breadcrumb-item text-dark" href="#">Home</a>
-        <a class="breadcrumb-item text-dark" href="#">Shop</a>
+        <%= link_to "Home", root_path, class: "breadcrumb-item text-dark"  %>
         <span class="breadcrumb-item active">Shopping Cart</span>
       </nav>
     </div>
@@ -35,7 +34,7 @@
           <td class="align-middle">
             <div class="input-group quantity mx-auto" style="width: 100px;">
               <div class="input-group-btn">
-                <%= button_to Hash[:product => (item["product"].id), controller: :static_pages,action: :remove_from_cart,method: :post], Hash[class: "btn btn-sm btn-primary btn-plus"] do %>
+                <%= button_to Hash[:product => (item["product"].id), controller: :carts, action: :remove_from_cart, method: :post ], Hash[class: "btn btn-sm btn-primary btn-plus"] do %>
                   <i class="fa fa-minus"></i>
                 <% end %>
               </div>
@@ -73,7 +72,7 @@
             <h5>Total</h5>
             <h5><%= @sub_total + 10 %></h5>
           </div>
-          <%= link_to "Proceed To Checkout", carts_checkout_path,{class: "btn btn-block btn-primary font-weight-bold my-3 py-3"} %>
+          <%= button_to "Proceed To Checkout" , carts_checkout_path, method: :post, class: "btn btn-block btn-primary font-weight-bold my-3 py-3" %>
         </div>
       </div>
     </div>

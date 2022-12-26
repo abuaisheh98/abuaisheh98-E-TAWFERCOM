@@ -11,6 +11,17 @@ class AdminsController < ApplicationController
   def display_categories
   end
 
+  def import_products
+  end
+
+  #Import Products from csv file
+  def import
+    file = params[:file]
+    return redirect_to admins_import_products_path, notice: 'Just CSV File.' unless file.content_type == 'text/csv'
+    CsvImportProductsService.new.call(file)
+    redirect_to admins_import_products_path, notice: 'Products imported.'
+  end
+
   def display_products
     respond_to do |format|
       format.html
@@ -30,6 +41,7 @@ class AdminsController < ApplicationController
     @user = User.find(params[:id])
   end
 
+  #Admin can update users information
   def update
     parameters = params.require(:user).permit(:id, :email, :name, :password, :password_confirmation, :role)
     @user = User.find(parameters['id'].to_i)
@@ -37,21 +49,24 @@ class AdminsController < ApplicationController
     redirect_to root_path
   end
 
+  #Admin can delete any user
   def destroy
     @user = User.find(params[:id])
     @user.destroy
-
     redirect_to root_path
   end
 
+  #Display products by category
   def products_by_categories
     @products_by_category = (Category.find(params[:id])).products
   end
 
+  #Display products by the store to which these products belong
   def products_by_stores
     @products_by_store = (Store.find(params[:id])).products
   end
 
+  #Admin can create users and assign roles to them
   def create_user
     @user = User.new(user_params)
     @user.save
@@ -62,12 +77,14 @@ class AdminsController < ApplicationController
   end
 
   private
+  #Data fetching for use purposes
   def get_users_data
     @admins = User.where('role = 2')
     @owners = User.where('role = 1')
     @costumers = User.where('role = 0')
   end
 
+  #routing users according to their roles
   def redirect_by_role
     if current_user.present?
       if current_user.role == "owner"
@@ -80,6 +97,7 @@ class AdminsController < ApplicationController
     end
   end
 
+  #Verify the validity of the session
   def check_session
     (redirect_to controller: :static_pages, action: :home )unless current_user.present?
   end

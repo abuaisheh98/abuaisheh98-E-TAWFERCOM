@@ -1,21 +1,35 @@
 class CartsController < ApplicationController
   before_action :redirect_by_role, if: -> { current_user.present? }
+
+  #Display cart contents
   def index
     item_view = Struct.new(:product, :quantity)
-    unless session["products"].present?
+    if !session["products"].present?
       redirect_to controller: :static_pages, action: :home
     else
       @cart = []
       @sub_total = 0
-        session["products"].each do |item|
-          instance = item_view.new(Product.find(item["product_id"]),item["quantity"])
-          @sub_total += instance["product"].price * instance["quantity"]
-          @cart << instance
-          session["checkout"] = @cart
-        end
+      session["products"].each do |item|
+        instance = item_view.new(Product.find(item["product_id"]), item["quantity"])
+        @sub_total += instance["product"].price * instance["quantity"]
+        @cart << instance
+        session["checkout"] = @cart
+      end
     end
   end
 
+  #Decrease product quantity in cart
+  def remove_from_cart
+    cart = session["products"]
+    item = cart.find {|item| item["product_id"] == params[:product]}
+    if item.present?
+      item["quantity"] -= 1 if item["quantity"] > 1
+    end
+    session["products"] = cart
+    redirect_back fallback_location: root_path
+  end
+
+  #Create order
   def checkout
     if current_user.present?
       if current_user.role == 'customer'
