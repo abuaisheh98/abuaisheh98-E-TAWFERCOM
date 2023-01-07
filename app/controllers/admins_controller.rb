@@ -18,7 +18,8 @@ class AdminsController < ApplicationController
   def import
     file = params[:file]
     return redirect_to admins_import_products_path, notice: 'Just CSV File.' unless file.content_type == 'text/csv'
-    CsvImportProductsService.new.call(file)
+    file_content = File.read(file)
+    ImportProductJob.perform_async(file_content)
     redirect_to admins_import_products_path, notice: 'Products imported.'
   end
 
