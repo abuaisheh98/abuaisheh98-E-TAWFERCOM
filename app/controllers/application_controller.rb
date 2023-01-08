@@ -24,7 +24,7 @@ class ApplicationController < ActionController::Base
   end
 
   def update_activity_time
-    session[:expires_at] = Time.now + 2.minutes
+    session[:expires_at] = Time.now + 20.minutes
   end
 
   protected

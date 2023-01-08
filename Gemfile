@@ -76,3 +76,6 @@ gem "ajax-datatables-rails", "~> 1.3"
 
 gem "jquery-datatables", "~> 1.10"
 gem "sidekiq"
+gem "foreman", "~> 0.87.2"
+
+gem "actioncable", "~> 7.0"

@@ -11,5 +11,6 @@
 //= require easing/easing.min
 //= require owl.carousel.js
 //= require owl.carousel.min
-
-
+//= link channels/consumer.js
+//= link channels/index.js
+//= link channels/progress_way_channel.js

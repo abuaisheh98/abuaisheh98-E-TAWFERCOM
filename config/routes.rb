@@ -1,6 +1,9 @@
 require 'sidekiq/web'
 Rails.application.routes.draw do
   mount Sidekiq::Web => '/sidekiq'
+  mount ActionCable.server => '/cable'
+
+  get 'admins/importing_progress'
   get 'owners/index'
   get 'admins/index'
   get 'carts/index'

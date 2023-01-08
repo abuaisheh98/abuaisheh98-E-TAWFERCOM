@@ -1,0 +1,70 @@
+<style>
+    .progress {
+        width: 500px;
+        height: 20px;
+        border: 1px solid #ddd;
+        border-radius: 5px;
+        overflow: hidden;
+    }
+
+    .progress-bar {
+        width: 0%;
+        height: 100%;
+        background-color: #4caf50;
+    }
+
+</style>
+
+<div class="progress" style="display: none">
+  <div class="progress-bar" style="width: 0%">
+    0
+  </div>
+</div>
+
+
+
+
+<script>
+    function createSocket(){
+        socket_url = 'ws://127.0.0.1:3000/cable'
+        const socket = new WebSocket(socket_url)
+
+        socket.onopen = function (event){
+            console.log('Connected to server')
+            const msg = {
+                command: 'subscribe',
+                identifier: JSON.stringify({
+                    id: 1,
+                    channel: 'ProgressWayChannel'
+                })
+            }
+            socket.send(JSON.stringify(msg))
+        }
+
+        socket.onmessage = function (event) {
+            const data = JSON.parse(event.data);
+            if (['ping', 'welcome', 'confirm_subscription'].includes(data.type)) {
+                return;
+            }
+            document.querySelector('.progress').style.display = 'initial';
+            let progress = document.querySelector('.progress-bar');
+            progress.innerHTML = data.message+'%'
+            progress.style.width = data.message+'%'
+            console.log(data)
+
+
+
+        }
+
+        socket.onclose = function (event){
+            console.log("Disconnect from server")
+        }
+
+        socket.onerror = function (error) {
+            console.log("Websocket error observed", error)
+        }
+    }
+
+
+    createSocket()
+</script>
